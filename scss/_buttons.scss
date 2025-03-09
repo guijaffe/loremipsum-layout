@@ -1,0 +1,27 @@
+.btn {
+  border: none;
+  border-radius: 4px;
+  padding: 15px 10px;
+  @include font($family: $font-primary, $size: 13px, $weight: 400, $transform: uppercase);
+  cursor: pointer;
+  min-width: 183px;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(1px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.2);
+  }
+}
+
+.btn--primary {
+  border: 1px solid $light-color;
+  background: $primary-color;
+  color: $light-color;
+}
+
+.btn--secondary {
+  border: 1px solid #6f6d7b;
+  background: $light-color;
+  color: $dark-color;
+}

@@ -1,0 +1,49 @@
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @include font($font-primary);
+  background-color: $bg-color;
+  color: $light-color;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  @include container;
+}
+
+.list-reset {
+  list-style: none;
+}
+
+.wrapper {
+  @include d-flex(column);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.page {
+  flex: 1 1 auto;
+}
+
+.blue-highlight {
+  color: $primary-color;
+}

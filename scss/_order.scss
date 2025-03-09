@@ -1,0 +1,172 @@
+.order {
+  background: url("/assets/images/BG.png") no-repeat center/cover;
+
+  &__steps {
+    @include d-flex(column, $align: center);
+    padding-top: clamp(90px, 8vw, 121px);
+    padding-bottom: clamp(100px, 8vw, 151px);
+  }
+
+  &__title {
+    @include font($size: clamp(25px, 5vw, 36px), $weight: 900, $transform: uppercase);
+    padding-bottom: clamp(10px, 3vw, 30px);
+  }
+
+  &__description {
+    @include font($size: clamp(13px, 3vw, 18px), $weight: 400);
+    color: #bbb;
+  }
+
+  &__icons {
+    @include d-flex(row, $align: stretch, $justify: space-between, $wrap: wrap, $gap: clamp(10px, 5vw, 20px));
+    width: 100%;
+    padding-top: 80px;
+    position: relative;
+
+    &-card {
+      @include d-flex(column, $align: center, $gap: clamp(5px, 3vw, 20px));
+      text-align: center;
+      position: relative;
+      word-break: break-word;
+      flex: 1;
+      max-width: 209px;
+
+      &:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 48px;
+        left: 79%;
+        width: 120px;
+        height: 6px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 6'%3E%3Ccircle cx='3' cy='3' r='3' fill='%23C4C4C4'/%3E%3C/svg%3E") repeat-x;
+        background-size: 24px 6px;
+        z-index: -1;
+      }
+    }
+
+    &-description {
+      @include font($size: 16px, $weight: 400);
+      padding: 0 12px;
+    }
+
+    &-circle {
+      @include d-flex($align: center, $justify: center);
+      border-radius: 100%;
+      background: #3e9cdc;
+      width: clamp(80px, 12vw, 100px);
+      height: clamp(80px, 12vw, 100px);
+      border: 5px solid #286690;
+    }
+  }
+
+  &-form {
+    @include d-grid(repeat(auto-fit, minmax(250px, 1fr)), repeat(3, 1fr), clamp(20px, 2vw, 30px));
+    padding-bottom: clamp(100px, 8vw, 151px);
+    overflow: hidden;
+
+    &__input {
+      &--file {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+      }
+    }
+
+    &__header {
+      @include d-flex($justify: space-between, $align: center, $gap: 5px);
+    }
+
+    &__button {
+      @include d-flex($align: center, $justify: center, $gap: 10px);
+      @include font($size: 15px, $weight: 600);
+      width: 100%;
+      border-radius: 3px;
+      border: 2px solid #3e9cdc;
+    }
+
+    &__submit {
+      @include d-flex($align: center, $justify: center, $gap: 10px);
+      @include font($size: 15px, $weight: 600);
+      width: 100%;
+    }
+
+    &__icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    &__group {
+      &--range {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        grid-column: span 2 / span 2;
+      }
+
+      &--file {
+        position: relative;
+        grid-column-start: 3;
+        @include d-flex($direction: column);
+      }
+
+      &--submit {
+        grid-column-start: 2;
+        grid-row-start: 3;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .order-form {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .order-form__group {
+    &--select {
+      grid-column: span 4 / span 4;
+    }
+    &--email {
+      grid-column: span 2 / span 2;
+      grid-row-start: 2;
+    }
+    &--name {
+      grid-column: span 2 / span 2;
+      grid-column-start: 3;
+      grid-row-start: 2;
+    }
+    &--range {
+      grid-column: span 3 / span 3;
+      grid-row-start: 3;
+    }
+    &--file {
+      grid-column-start: 4;
+      grid-row-start: 3;
+    }
+    &--submit {
+      grid-column: span 4 / span 4;
+      grid-row-start: 4;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .order__icons {
+    @include d-flex(column, center, center);
+    row-gap: 30px;
+    padding: 30px 0;
+    position: relative;
+
+    &-card::after {
+      display: none;
+    }
+  }
+
+  .order-form {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .order-form__group {
+    grid-area: span 4 / span 6;
+  }
+}

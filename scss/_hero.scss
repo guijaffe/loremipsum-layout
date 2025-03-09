@@ -1,0 +1,49 @@
+.hero {
+  background: url("/assets/images/hero.webp") no-repeat top/cover;
+
+  &__container {
+    padding: 203px 0;
+    color: $dark-color;
+    @include d-flex($direction: column);
+    gap: clamp(30px, 5vw, 80px);
+    max-width: 780px;
+    width: 100%;
+  }
+
+  &__title {
+    @include font($size: clamp(25px, 5vw, 48px), $weight: 700, $transform: uppercase);
+  }
+
+  &__text {
+    @include font($size: clamp(13px, 2vw, 20px), $weight: 700);
+  }
+
+  &__list {
+    padding-top: 10px;
+    @include font($size: clamp(13px, 2vw, 20px), $weight: 400)
+  }
+
+  &__item:not(:last-child) {
+    padding-bottom: 5px;
+  }
+
+  &__item::before{
+    content: "- ";
+    margin: 10px;
+  }
+
+  &__actions {
+    @include d-flex($wrap: wrap);
+    gap: clamp(10px, 5vw, 30px);
+  }
+}
+
+@media (max-width: 780px) {
+  .hero__container {
+    padding: 180px 0 100px 0;
+  }
+
+  .hero__actions button {
+    width: 100%;
+  }
+}

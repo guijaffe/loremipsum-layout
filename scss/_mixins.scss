@@ -1,0 +1,71 @@
+@mixin d-flex($direction: null, $justify: null, $align: null, $gap: null, $wrap: null) {
+  display: flex;
+
+  @if $align != null {
+    align-items: $align;
+  }
+
+  @if $direction != null {
+    flex-direction: $direction;
+  }
+
+  @if $justify != null {
+    justify-content: $justify;
+  }
+
+  @if $gap != null {
+    gap: $gap;
+  }
+
+  @if $wrap != null {
+    flex-wrap: $wrap;
+  }
+}
+
+@mixin d-grid($columns: null, $rows: null, $gap: null) {
+  display: grid;
+
+  @if $columns != null {
+    grid-template-columns: $columns;
+  }
+
+  @if $rows != null {
+    grid-template-rows: $rows;
+  }
+
+  @if $gap != null {
+    gap: $gap;
+  }
+}
+
+@mixin font($family: null, $size: null, $weight: null, $style: null, $transform: null, $line-height: null) {
+  @if $family != null {
+    font-family: $family;
+  }
+
+  @if $size != null {
+    font-size: $size;
+  }
+
+  @if $weight != null {
+    font-weight: $weight;
+  }
+
+  @if $style != null {
+    font-style: $style;
+  }
+
+  @if $transform != null {
+    text-transform: $transform;
+  }
+
+  @if $line-height != null {
+    line-height: $line-height;
+  }
+}
+
+@mixin container($max-width: 1192px) {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 10px;
+}

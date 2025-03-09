@@ -1,0 +1,60 @@
+.footer {
+  background-color: $secondary-color;
+  width: 100%;
+
+  &__container {
+    @include d-flex(row, space-between, center, 20px, wrap);
+    padding: 30px 0;
+  }
+
+  &__col {
+    @include d-flex(row, center, center, 38px);
+    @include font($size: 13px, $weight: 400);
+    position: relative;
+    flex: 1;
+  }
+
+  &__col:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 5px; /* Смещаем разделитель на половину расстояния */
+    transform: translateY(-50%); /* Центрируем по вертикали */
+    width: 1px; /* Ширина разделителя */
+    height: 18px; /* Высота разделителя (можно настроить) */
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 18'%3E%3Cpath fill='%23C3C3C3' d='M0 0H1V18H0V0Z'/%3E%3C/svg%3E") repeat-y center;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    color: $primary-color;
+  }
+
+  &__item {
+    @include d-flex(row, center, center, 10px);
+  }
+
+  &__text {
+    color: #C3C3C3;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: $light-color;
+    }
+  }
+}
+
+
+.footer__container {
+
+}
+
+.footer__col {
+}
+
+/* Добавляем разделитель между колонками */
+.footer__col:not(:last-child)::after {
+
+}
