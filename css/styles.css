@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: "Lato";
   src: url("../assets/fonts/Lato-Regular.woff2") format("woff2");
@@ -666,10 +665,10 @@ input::placeholder {
   content: "";
   position: absolute;
   top: 50%;
-  right: 5px; /* Смещаем разделитель на половину расстояния */
-  transform: translateY(-50%); /* Центрируем по вертикали */
-  width: 1px; /* Ширина разделителя */
-  height: 18px; /* Высота разделителя (можно настроить) */
+  right: 5px;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 18px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 18'%3E%3Cpath fill='%23C3C3C3' d='M0 0H1V18H0V0Z'/%3E%3C/svg%3E") repeat-y center;
 }
 .footer__icon {
@@ -692,7 +691,5 @@ input::placeholder {
 .footer__text:hover {
   color: #FFFFFF;
 }
-
-/* Добавляем разделитель между колонками */
 
 /*# sourceMappingURL=styles.css.map */
