@@ -1,5 +1,5 @@
 .order {
-  background: url("/assets/images/BG.png") no-repeat center/cover;
+  background: url("../assets/images/BG.png") no-repeat center/cover;
 
   &__steps {
     @include d-flex(column, $align: center);

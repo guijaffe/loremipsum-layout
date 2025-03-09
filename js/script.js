@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	initFormHandling();
 	initRangeInput();
 	initFileUpload();
+	initBurgerMenu();
 });
 
 const messages = {
@@ -12,7 +13,7 @@ const messages = {
 	successMessage: "Форма успешно отправлена! Данные сохранены в localStorage.",
 };
 
-function initCustomSelect() {
+const initCustomSelect = () => {
 	const select = document.querySelector(".select");
 	if (!select) return;
 
@@ -38,42 +39,41 @@ function initCustomSelect() {
 			select.classList.remove("select--open");
 		}
 	});
-}
+};
 
-function initFormHandling() {
+const initFormHandling = () => {
 	const form = document.querySelector(".order-form");
 	if (!form) return;
-
-	const hiddenInput = document.getElementById("select-value");
-	const selectWarning = document.getElementById("selectWarning");
-	const emailWarning = document.getElementById("emailWarning");
 
 	form.addEventListener("submit", (event) => {
 		event.preventDefault();
 
-		if (!validateForm(form, hiddenInput, selectWarning, emailWarning)) return;
+		const hiddenInput = document.getElementById("select-value");
+		const selectWarning = document.getElementById("selectWarning");
+		const emailWarning = document.getElementById("emailWarning");
+
+		if (!validateForm(hiddenInput, selectWarning, emailWarning)) return;
 
 		saveFormData(form);
 		alert(messages.successMessage);
-		window.location.reload(); // Перезагружаем страницу после подтверждения
+		window.location.reload();
 	});
-}
+};
 
-function validateForm(form, hiddenInput, selectWarning, emailWarning) {
-	return validateSelect(hiddenInput, selectWarning) && validateEmail(emailWarning, form);
-}
+const validateForm = (hiddenInput, selectWarning, emailWarning) =>
+	validateSelect(hiddenInput, selectWarning) && validateEmail(emailWarning);
 
-function validateSelect(hiddenInput, warningElement) {
+const validateSelect = (hiddenInput, warningElement) => {
 	if (!hiddenInput.value) {
 		warningElement.textContent = messages.selectError;
 		warningElement.style.display = "block";
 		return false;
 	}
 	return true;
-}
+};
 
-function validateEmail(warningElement, form) {
-	const email = form.elements["email"].value;
+const validateEmail = (warningElement) => {
+	const email = document.querySelector(".order-form").elements["email"].value;
 	const existingData = JSON.parse(localStorage.getItem("formData")) || [];
 
 	if (existingData.some(item => item.email === email)) {
@@ -82,9 +82,9 @@ function validateEmail(warningElement, form) {
 		return false;
 	}
 	return true;
-}
+};
 
-function saveFormData(form) {
+const saveFormData = (form) => {
 	const formData = new FormData(form);
 	const formObject = {};
 
@@ -101,9 +101,9 @@ function saveFormData(form) {
 		console.error("Ошибка при сохранении данных в localStorage:", error);
 		alert("Не удалось сохранить данные. Пожалуйста, попробуйте ещё раз.");
 	}
-}
+};
 
-function initRangeInput() {
+const initRangeInput = () => {
 	const rangeInput = document.getElementById("percentage");
 	const rangeValue = document.getElementById("percentage-value");
 	if (!rangeInput || !rangeValue) return;
@@ -111,9 +111,9 @@ function initRangeInput() {
 	rangeInput.addEventListener("input", () => {
 		rangeValue.textContent = `${rangeInput.value}%`;
 	});
-}
+};
 
-function initFileUpload() {
+const initFileUpload = () => {
 	const fileInput = document.getElementById("file");
 	const fileButton = document.getElementById("customFileButton");
 	const fileButtonText = document.getElementById("fileButtonText");
@@ -126,7 +126,7 @@ function initFileUpload() {
 		const files = Array.from(fileInput.files);
 
 		if (files.length > 3) {
-			fileWarning.textContent = "Можно выбрать не более 3 файлов!";
+			fileWarning.textContent = messages.fileError;
 			fileWarning.style.display = "block";
 			fileInput.value = "";
 			fileButtonText.textContent = "Прикрепить файл";
@@ -135,21 +135,20 @@ function initFileUpload() {
 
 		fileWarning.textContent = "";
 		fileWarning.style.display = "none";
-
 		fileButtonText.textContent = files.length > 0 ? `Выбрано файлов: ${files.length}` : "Прикрепить файл";
 	});
-}
+};
 
-document.addEventListener("DOMContentLoaded", () => {
-	const burger = document.createElement("div"); // Создаем бургер динамически
+const initBurgerMenu = () => {
+	const burger = document.createElement("div");
 	burger.classList.add("menu__burger");
 	burger.innerHTML = `<span></span>`;
-	document.querySelector(".menu").prepend(burger); // Добавляем бургер в меню
+	document.querySelector(".menu").prepend(burger);
 
 	const menuList = document.querySelector(".menu__list");
 
 	burger.addEventListener("click", () => {
-		menuList.classList.toggle("menu__list--open"); // Открываем/закрываем меню
-		burger.classList.toggle("menu__burger--open"); // Анимация бургера
+		menuList.classList.toggle("menu__list--open");
+		burger.classList.toggle("menu__burger--open");
 	});
-});
+};
