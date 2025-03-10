@@ -29,16 +29,19 @@
 
   &__item {
     @include d-flex(row, center, center, 10px);
+
+   & a {
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+
+     &:hover {
+       color: $light-color;
+     }
+   }
   }
 
   &__text {
     color: #C3C3C3;
-    transition: 0.3s ease-in-out;
-    cursor: pointer;
-
-    &:hover {
-      color: $light-color;
-    }
   }
 }
 
